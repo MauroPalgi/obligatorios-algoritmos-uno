@@ -19,7 +19,9 @@ public class Control_clase_2 {
         // TODO code application logic here
 
         int[][] v = {{2, 1, 6, 5}, {11, 3, 4, 4}, {7, 3, 12, 1}};
+        int[][] vv = {};
         Utils.MostrarMatriz(v);
+        Utils.MostrarMatriz(vv);
         
     }
 

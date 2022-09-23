@@ -12,22 +12,32 @@ package helper;
 public class Utils {
 
     static public void MostrarMatriz(int[][] mat) {
-        String texto = "{\n";
+        if (mat.length == 0) {
+            System.out.println("{ empty }");
+            return;
+        }
+        System.out.println("{");
         for (int fila = 0; fila < mat.length; fila++) {
-            texto += "  {";
-            for (int col = 0; col < mat[fila].length; col++) {
-                int celda = mat[fila][col];
+            int[] arregloFila = mat[fila];
+            MostrarArreglo(arregloFila);
+        }
+        System.out.println("}");
+    }
 
-                if (col < mat[fila].length) {
-                    texto += celda + ",";
-                }
-                if (col == mat[fila].length - 1) {
-                    texto += celda + "}\n";
-                }
+    static public void MostrarArreglo(int[] arr) {
+
+        String texto = "  {";
+        for (int i = 0; i < arr.length; i++) {
+            int celda = arr[i];
+
+            if (i < arr.length) {
+                texto += celda + ",";
+            }
+            if (i == arr.length - 1) {
+                texto += celda + "}";
             }
         }
-        texto += "}";
-        System.out.println(texto);
 
+        System.out.println(texto);
     }
 }
