@@ -30,11 +30,10 @@ public class Utils {
         for (int i = 0; i < arr.length; i++) {
             int celda = arr[i];
 
-            if (i < arr.length) {
-                texto += celda + ",";
-            }
             if (i == arr.length - 1) {
                 texto += celda + "}";
+            } else {
+                texto += celda + ",";
             }
         }
 

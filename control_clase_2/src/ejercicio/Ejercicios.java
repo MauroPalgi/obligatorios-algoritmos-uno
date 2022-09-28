@@ -5,21 +5,49 @@
  */
 package ejercicio;
 
+import helper.Utils;
+
 /**
  *
  * @author maurp
  */
 public class Ejercicios {
 
-    public int columnaMaxima(int[][] mat) {
-        return 0;
+    public static int columnaMaxima(int[][] mat) {
+        int[] vectorSum = new int[mat[0].length];
+        int maxVal = Integer.MIN_VALUE;
+        int maxCol = -1;
+        for (int i = mat.length - 1; i >= 0; i--) {
+            for (int j = mat[i].length - 1; j >= 0; j--) {
+                int celda = mat[i][j];
+                vectorSum[j] += celda;
+                if (vectorSum[j] >= maxVal) {
+                    maxVal = vectorSum[j];
+                    maxCol = j;
+                }
+            }
+        }
+        return maxCol;
     }
 
-    public int[][] eliminarColDeMatriz(int[][] mat, int col) {
-        return null;
+    public static int[][] eliminarColDeMatriz(int[][] mat, int col) {
+        Utils.MostrarMatriz(mat);
+        int[][] nuevaMat = new int[mat.length][mat[0].length - 1];
+        for (int i = 0; i < nuevaMat.length; i++) {
+            for (int j = 0; j < nuevaMat[i].length; j++) {
+                int celda;
+                if (j < col) {
+                    celda = mat[i][j];
+                } else {
+                    celda = mat[i][j + 1];
+                }
+                nuevaMat[i][j] = celda;
+            }
+        }
+        return nuevaMat;
     }
 
-    public void completarMatrizConCeros(int[][] mat) {
+    public static void completarMatrizConCeros(int[][] mat) {
     }
 
 }

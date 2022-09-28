@@ -5,6 +5,7 @@
  */
 package control_clase_2;
 import helper.Utils;
+import ejercicio.Ejercicios;
 
 /**
  *
@@ -18,10 +19,12 @@ public class Control_clase_2 {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        int[][] v = {{2, 1, 6, 5}, {11, 3, 4, 4}, {7, 3, 12, 1}};
-        int[][] vv = {};
-        Utils.MostrarMatriz(v);
-        Utils.MostrarMatriz(vv);
+        int[][] mat = {{4, 1, 6, 5}, {11, 3, 4, 4}, {7, 3, 12, 1}};
+        // int[][] vv = {};
+        // Utils.MostrarMatriz(v);
+        // Utils.MostrarMatriz(vv);
+        // Ejercicios.columnaMaxima(mat);
+        Ejercicios.eliminarColDeMatriz(mat, 3);
         
     }
 
@@ -33,6 +36,7 @@ public class Control_clase_2 {
     columna de menor número (índice).
      */
     public static void pruebaEjercicio1() {
+        // Ejercicios.columnaMaxima(mat);
     }
     /*
     Ejercicio 2
