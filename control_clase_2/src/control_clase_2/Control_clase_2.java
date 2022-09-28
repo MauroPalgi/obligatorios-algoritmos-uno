@@ -19,12 +19,13 @@ public class Control_clase_2 {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        int[][] mat = {{4, 1, 6, 5}, {11, 3, 4, 4}, {7, 3, 12, 1}};
+        int[][] mat = {{4, 1, 6, 5}, {11, 3, 0, 4}, {7, 3, 12, 0}};
         // int[][] vv = {};
         // Utils.MostrarMatriz(v);
         // Utils.MostrarMatriz(vv);
         // Ejercicios.columnaMaxima(mat);
         Ejercicios.eliminarColDeMatriz(mat, 3);
+        Ejercicios.completarMatrizConCeros(mat);
         
     }
 

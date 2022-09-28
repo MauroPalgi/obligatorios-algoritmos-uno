@@ -29,7 +29,6 @@ public class Utils {
         String texto = "  {";
         for (int i = 0; i < arr.length; i++) {
             int celda = arr[i];
-
             if (i == arr.length - 1) {
                 texto += celda + "}";
             } else {
