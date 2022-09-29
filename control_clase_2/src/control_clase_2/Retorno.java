@@ -9,6 +9,12 @@ public class Retorno {
     private int valorEntero = 0;
     private String valorString = "";
     private boolean valorBooleano = false;
+    private Resultado resultado = Resultado.NO_IMPLEMENTADA;
+
+    //Constructor
+    public Retorno(Resultado resultado) {
+        this.resultado = resultado;
+    }
 
     public int getValorEntero() {
         return valorEntero;
@@ -46,10 +52,4 @@ public class Retorno {
         this.resultado = resultado;
     }
 
-    Resultado resultado;
-
-    //Constructor
-    public Retorno(Resultado resultado) {
-        this.resultado = resultado;
-    }
 }

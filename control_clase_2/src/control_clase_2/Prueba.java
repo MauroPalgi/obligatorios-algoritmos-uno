@@ -10,18 +10,24 @@ public class Prueba {
         cantCorrectas = cantIncorrectas = cantNoImplementadas = 0;
     }
 
-    public void ver(Retorno.Resultado tr, Retorno.Resultado RetornoEsperado, String comentario) {
+    public void ver(Retorno rfn, Retorno.Resultado RetornoEsperado, String comentario, String TipoRetorno) {
         System.out.println("----------------------------- Testeo --------------------------------");
         imprimirComentario(comentario);
-        imprimirRetorno(tr, RetornoEsperado);
+        imprimirRetorno(rfn.getResultado(), RetornoEsperado);
+        if (TipoRetorno == "Entero") {
+            System.out.println("  Retorno Entero: " + rfn.getValorEntero());
+        }
+        if (TipoRetorno == "String") {
+            System.out.println("  Retorno String: " + rfn.getValorString());
+        }
         System.out.println("");
         System.out.println("---------------------------------------------------------------------");
         System.out.println();
 
-        if (tr.equals(RetornoEsperado)) {
+        if (rfn.getResultado().equals(RetornoEsperado)) {
             cantCorrectas++;
         } else {
-            if (tr.equals(Retorno.Resultado.NO_IMPLEMENTADA)) {
+            if (rfn.getResultado().equals(Retorno.Resultado.NO_IMPLEMENTADA)) {
                 cantNoImplementadas++;
             } else {
                 cantIncorrectas++;

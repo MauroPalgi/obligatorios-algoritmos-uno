@@ -27,11 +27,11 @@ public class Ejercicios {
                 }
             }
         }
+        System.out.println(Utils.StringArreglo(vectorSum, false));
         return maxCol;
     }
 
     public static int[][] eliminarColDeMatriz(int[][] mat, int col) {
-        Utils.MostrarMatriz(mat);
         int[][] nuevaMat = new int[mat.length][mat[0].length - 1];
         for (int i = 0; i < nuevaMat.length; i++) {
             for (int j = 0; j < nuevaMat[i].length; j++) {
@@ -47,8 +47,7 @@ public class Ejercicios {
         return nuevaMat;
     }
 
-    public static void completarMatrizConCeros(int[][] mat) {
-        Utils.MostrarMatriz(mat);
+    public static int[][] completarMatrizConCeros(int[][] mat) {
         for (int i = 0; i < mat.length; i++) {
             for (int j = 0; j < mat[i].length; j++) {
                 int celda = mat[i][j];
@@ -59,8 +58,7 @@ public class Ejercicios {
                 }
             }
         }
-        Utils.MostrarMatriz(mat);
-
+        return mat;
     }
 
 }
