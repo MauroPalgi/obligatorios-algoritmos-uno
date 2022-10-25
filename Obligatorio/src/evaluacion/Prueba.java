@@ -1,6 +1,6 @@
-package sistemaDistribucion;
+package evaluacion;
 
-import sistemaDistribucion.Retorno.Resultado;
+import evaluacion.Retorno.Resultado;
 
 
 

@@ -1,4 +1,4 @@
-package sistemaDistribucion;
+package evaluacion;
 
 
 public interface IObligatorio {
