@@ -5,6 +5,11 @@
  */
 package obligatorio;
 
+import utils.*;
+import utils.estructuras.ListaDoble;
+import utils.estructuras.NodoDoble;
+import utils.estructuras.Test;
+
 /**
  *
  * @author maurp
@@ -16,6 +21,17 @@ public class Obligatorio {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+
+        ListaDoble<Test> listaTest = new ListaDoble<>();
+        NodoDoble<Test> prueba = new NodoDoble<>(new Test());
+        listaTest.setInicio(prueba);
+        System.out.println(">|" + listaTest.getInicio().getDato().toString());
+        NodoDoble<Test> prueba1 = new NodoDoble<>(new Test());
+        NodoDoble<Test> prueba2 = new NodoDoble<>(new Test());
+        System.out.println(prueba.getDato().toString());
+        System.out.println(prueba1.getDato().toString());
+        System.out.println(prueba2.getDato().toString());
+
     }
-    
+
 }
