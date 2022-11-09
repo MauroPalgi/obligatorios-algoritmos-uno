@@ -11,14 +11,13 @@ package utils.estructuras;
 public class NodoDoble<T> {
 
     private T dato;
-    private NodoDoble<T> sig;
-    private NodoDoble<T> ant;
+    private NodoDoble<T> siguiente;
+    private NodoDoble<T> anterior;
 
-    
     public NodoDoble(T t) {
         this.dato = t;
-        this.sig = null;
-        this.ant = null;
+        this.siguiente = null;
+        this.anterior = null;
     }
 
     public T getDato() {
@@ -29,21 +28,28 @@ public class NodoDoble<T> {
         this.dato = dato;
     }
 
-    public NodoDoble<T> getSig() {
-        return sig;
+    public NodoDoble<T> getSiguiente() {
+        return siguiente;
     }
 
-    public void setSig(NodoDoble<T> sig) {
-        this.sig = sig;
+    public void setSiguiente(NodoDoble<T> siguiente) {
+        this.siguiente = siguiente;
     }
 
-    public NodoDoble<T> getAnt() {
-        return ant;
+    public NodoDoble<T> getAnterior() {
+        return anterior;
     }
 
-    public void setAnt(NodoDoble<T> ant) {
-        this.ant = ant;
+    public void setAnterior(NodoDoble<T> anterior) {
+        this.anterior = anterior;
     }
 
-    
+    @Override
+    public String toString() {
+
+        return "Nodo{" + "dato =" + dato.toString() + ", siguiente=" + getSiguiente() + '}';
+    }
+
+  
+
 }

@@ -9,7 +9,7 @@ package utils.estructuras;
  *
  * @author maurp
  */
-public class Test {
+public class Test implements Comparable<Test> {
 
     static private int idGlobal = 0;
     private int id;
@@ -47,6 +47,12 @@ public class Test {
     @Override
     public String toString() {
         return "Test{" + "id=" + id + ", comment=" + comment + '}';
+    }
+
+    @Override
+    public int compareTo(Test o) {
+        return this.id - o.id;
+
     }
 
 }

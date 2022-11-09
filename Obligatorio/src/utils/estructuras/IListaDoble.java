@@ -24,7 +24,7 @@ public interface IListaDoble<T> {
 
     public void borrarElemento(NodoDoble<T> data);
 
-    public boolean buscarelemento(NodoDoble<T> data);
+    public NodoDoble<T> buscarElemento(NodoDoble<T> data);
 
     public NodoDoble<T> obtenerElemento(NodoDoble<T> data);
 
