@@ -126,15 +126,16 @@ public class ListaDoble<T> implements IListaDoble<T> {
                     if (nodoSiguiente != null && nodoAnterior != null) {
                         nodoAnterior.setSiguiente(nodoSiguiente);
                         nodoSiguiente.setAnterior(nodoAnterior);
-                        System.out.println("anterior -> " + nodoAnterior.toString());
-                        System.out.println("siguiente -> " + nodoSiguiente.toString());
                         cantidad--;
                     }
+                    if (cantElementos() == 1) {
+                        vaciar();
+                    }
                 }
-                if (inicio.getDato().equals(data)) {
+                if (getInicio() != null && getInicio().getDato().equals(data)) {
                     borrarInicio();
                 }
-                if (getFin().getDato().equals(data)) {
+                if (getFin() != null && getFin().getDato().equals(data)) {
                     borrarFin();
                 }
 

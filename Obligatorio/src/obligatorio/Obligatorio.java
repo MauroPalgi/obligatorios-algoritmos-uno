@@ -41,6 +41,10 @@ public class Obligatorio {
         listaTest.mostrar();
         listaTest.borrarElemento(inicio);
         listaTest.mostrar();
+        listaTest.borrarElemento(fin);
+        listaTest.mostrar();
+        listaTest.borrarElemento(medio);
+        listaTest.mostrar();
 //        listaTest.borrarElemento(medio);
 //        listaTest.mostrar();
 //        listaTest.borrarElemento(fin);
