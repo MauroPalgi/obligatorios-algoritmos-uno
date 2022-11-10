@@ -10,34 +10,34 @@ package utils.estructuras;
  * @param <T>
  */
 public class ListaDoble<T> implements IListaDoble {
-    
+
     private NodoDoble<T> inicio;
     private NodoDoble<T> fin;
     private int cantidad;
-    
+
     public NodoDoble getInicio() {
         return inicio;
     }
-    
+
     public void setInicio(NodoDoble<T> inicio) {
         this.inicio = inicio;
     }
-    
+
     public NodoDoble getFin() {
         return fin;
     }
-    
+
     public void setFin(NodoDoble<T> fin) {
         this.fin = fin;
     }
-    
+
     @Override
-    public boolean esVacia() { // good
+    public boolean esVacia() { // GOOD
         return this.cantidad == 0;
     }
-    
+
     @Override
-    public void agregarInicio(NodoDoble nodo) {
+    public void agregarInicio(NodoDoble nodo) { // GOOD -> rompe si el elemento y su siguiente son el mismo
         if (esVacia()) {
             this.inicio = nodo;
             this.fin = inicio;
@@ -48,62 +48,70 @@ public class ListaDoble<T> implements IListaDoble {
         }
         cantidad++;
     }
-    
+
     @Override
-    public void agregarFinal(NodoDoble nodo) { // TODO: VER ESTO        
+    public void agregarFinal(NodoDoble nodo) { // GOOD -> rompe si el elemento y su siguiente son el mismo
         if (this.esVacia()) {
             agregarInicio(nodo);
             setFin(nodo);
         } else {
+            // coppio valor final y borro el valor anterior
             NodoDoble aux = this.getFin();
             this.setFin(null);
+            
+            // seteo al nuevo final el valor anterior como el anterior final
+            // que tengo en el auxiliar
             nodo.setAnterior(aux);
+            // seteo el final el nuevo final
             this.setFin(nodo);
-            aux.setSiguiente(this.getFin());    
+            // le coloco al siguiente el valor del mismo
+            aux.setSiguiente(this.getFin());
             cantidad++;
         }
     }
-    
+
     @Override
     public void agregarOrd(NodoDoble t) { // TODO UTILIZAR https://www.geeksforgeeks.org/insertion-sort-doubly-linked-list/
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
-    public void borrarInicio() {
+    public void borrarInicio() { // GOOD 
         if (!this.esVacia()) {
             if (cantidad == 1) {
-                fin = null;
+                setFin(null);
+                setInicio(null);
             }
-            this.inicio = getInicio().getSiguiente();
-            this.inicio.setAnterior(null);
+            
+            else {
+                NodoDoble aux = getInicio().getSiguiente();    
+                setInicio(null);
+                setInicio(aux);
+                this.inicio.setAnterior(null);
+            }
+
             cantidad--;
         } else {
             System.out.println("Esta vacia");
         }
     }
-    
+
     @Override
-    public void borrarFin() {
+    public void borrarFin() { // GOOD
         if (!this.esVacia()) {
             if (cantidad == 1) {
-                inicio = null;
-                fin = inicio;
+                setFin(null);
+                setInicio(null);
             } else {
-                NodoDoble actual = getInicio();
-                NodoDoble siguiente = getInicio().getSiguiente();
-                
-                while (siguiente.getSiguiente() != null) {
-                    actual = siguiente;
-                    siguiente = siguiente.getSiguiente();
-                }
-                actual.setSiguiente(null);
-                fin = actual;
+                NodoDoble<T> aux = this.getFin().getAnterior();
+                this.setFin(null);
+                aux.setSiguiente(null);
+                this.setFin(aux);
             }
             cantidad--;
         }
     }
-    
+
     @Override
     public void borrarElemento(NodoDoble data) {
         if (!this.esVacia()) {
@@ -127,11 +135,11 @@ public class ListaDoble<T> implements IListaDoble {
             }
         }
     }
-    
+
     @Override
     public NodoDoble<T> buscarElemento(NodoDoble data) {
         NodoDoble<T> ret = null;
-        
+
         if (!this.esVacia()) {
             if (inicio.getDato().equals(data)) {
                 ret = inicio;
@@ -153,7 +161,7 @@ public class ListaDoble<T> implements IListaDoble {
         }
         return ret;
     }
-    
+
     @Override
     public NodoDoble obtenerElemento(NodoDoble data) {
         NodoDoble<T> ret = null;
@@ -178,24 +186,22 @@ public class ListaDoble<T> implements IListaDoble {
         }
         return ret;
     }
-    
+
     @Override
-    public void vaciar() {
+    public void vaciar() { // GOOD
         this.inicio = null;
         this.fin = null;
         this.cantidad = 0;
     }
-    
+
     @Override
-    public void mostrar() {
+    public void mostrar() { // GOOD
         NodoDoble<T> actual = getInicio();
-        System.out.println("" + actual.toString());
-        System.out.println("" + actual.toString());
         if (actual != null) {
             System.out.println("Lista Nodos{ \n inicio: " + getInicio().getDato().toString() + ";\n fin: " + getFin().getDato().toString() + ";\n cantidad elementos: " + this.cantidad + " \n= [");
             while (actual != null) {
-                System.out.print(actual.toString() + "  ");                
-                actual = actual.getSiguiente();
+                System.out.print(actual.toString() + "  ");
+                actual = actual.getSiguiente();                
             }
             System.out.println("\n ]}");
         } else {
@@ -203,15 +209,15 @@ public class ListaDoble<T> implements IListaDoble {
         }
         System.out.println("");
     }
-    
+
     @Override
     public void mostrarREC(NodoDoble inicio) { // TODO!
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
-    public int cantElementos() {
+    public int cantElementos() { // GOOD
         return this.cantidad;
     }
-    
+
 }
