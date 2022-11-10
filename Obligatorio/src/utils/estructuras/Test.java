@@ -44,10 +44,7 @@ public class Test implements Comparable<Test> {
             return false;
         }
         final Test other = (Test) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
+        return this.id == other.id;
     }
 
     @Override

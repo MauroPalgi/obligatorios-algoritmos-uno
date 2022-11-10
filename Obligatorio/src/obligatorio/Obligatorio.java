@@ -23,25 +23,28 @@ public class Obligatorio {
         // TODO code application logic here
 
         ListaDoble<Test> listaTest = new ListaDoble<>();
-        NodoDoble<Test> inicio = new NodoDoble<>(new Test("inicio"));
-        NodoDoble<Test> medio = new NodoDoble<>(new Test());
-        NodoDoble<Test> fin = new NodoDoble<>(new Test("fin"));
-        NodoDoble<Test> segundoFin = new NodoDoble<>(new Test("nuevo fin"));
-
-        
+        Test inicio = new Test("inicio");
+        Test medio = new Test("medio");
+        Test fin = new Test("fin");
 
         // test 1
 //        listaTest.mostrar();
 //        listaTest.agregarFinal(inicio);        
 //        listaTest.borrarInicio();        
 //        listaTest.mostrar();
-        
         // test 2
-        listaTest.agregarInicio(inicio);                
-        listaTest.agregarInicio(inicio);                
+        listaTest.agregarInicio(inicio);
+        listaTest.agregarInicio(inicio);
+        listaTest.agregarInicio(inicio);
+        listaTest.agregarFinal(medio);
+        listaTest.agregarFinal(fin);
         listaTest.mostrar();
-        listaTest.borrarInicio();
+        listaTest.borrarElemento(inicio);
         listaTest.mostrar();
+//        listaTest.borrarElemento(medio);
+//        listaTest.mostrar();
+//        listaTest.borrarElemento(fin);
+//        listaTest.mostrar();
 //        
 //        listaTest.borrarFin();
 //        listaTest.mostrar();

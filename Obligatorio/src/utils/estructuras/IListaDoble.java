@@ -13,23 +13,24 @@ public interface IListaDoble<T> {
 
     public boolean esVacia();
 
-    public void agregarInicio(NodoDoble<T> nodo);
+    public void agregarInicio(T data);
 
-    public void agregarFinal(NodoDoble<T> nodo);
+    public void agregarFinal(T data);
 
-    public void agregarOrd(NodoDoble<T> nodo);
+    public void agregarOrd(T data);
 
     public void borrarInicio();
 
     public void borrarFin();
 
-    public void borrarElemento(NodoDoble<T> nodo);
+    public void borrarElemento(T data);
 
     // pensar como hacer cuando empieces a ver casos
     // de los metodos que tenes que hacer
-    public NodoDoble<T> buscarElemento(NodoDoble<T> data);
+    public NodoDoble<T> buscarElemento(T data);
+
     // same
-    public NodoDoble<T> obtenerElemento(NodoDoble<T> data);
+    public NodoDoble<T> obtenerElemento(T data);
 
     public void vaciar();
 
