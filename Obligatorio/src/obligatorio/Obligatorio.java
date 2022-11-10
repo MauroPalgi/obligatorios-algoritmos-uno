@@ -37,7 +37,7 @@ public class Obligatorio {
         
         listaTest.mostrar();
         listaTest.agregarFinal(fin);
-        // listaTest.mostrar();
+         listaTest.mostrar();
         // listaTest.agregarFinal(prueba);
         // listaTest.mostrar();
         

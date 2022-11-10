@@ -56,10 +56,10 @@ public class ListaDoble<T> implements IListaDoble {
             setFin(nodo);
         } else {
             NodoDoble aux = this.getFin();
-            this.getFin().getAnterior().setSiguiente(aux);
+            this.setFin(null);
+            nodo.setAnterior(aux);
             this.setFin(nodo);
-            aux.setSiguiente(this.getFin());            
-            this.getFin().setAnterior(aux);
+            aux.setSiguiente(this.getFin());    
             cantidad++;
         }
     }
@@ -194,8 +194,7 @@ public class ListaDoble<T> implements IListaDoble {
         if (actual != null) {
             System.out.println("Lista Nodos{ \n inicio: " + getInicio().getDato().toString() + ";\n fin: " + getFin().getDato().toString() + ";\n cantidad elementos: " + this.cantidad + " \n= [");
             while (actual != null) {
-                System.out.print(actual.toString() + "  ");
-                
+                System.out.print(actual.toString() + "  ");                
                 actual = actual.getSiguiente();
             }
             System.out.println("\n ]}");

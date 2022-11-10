@@ -58,14 +58,14 @@ public class NodoDoble<T> {
 
     @Override
     public String toString() {
-        String text = "Nodo{ dato =" + getDato().toString();
-//        if (getSiguiente() != null) {
-//            text += ", siguiente=" + getSiguiente();
-//        }
-//        if (getAnterior() != null) {
-//            text += ", anterior=" + getAnterior();
-//        }
-        text += " }";
+        String text = "Nodo { dato = " + getDato().toString();
+        if (getSiguiente() != null) {
+            text += ", siguiente = {" + getSiguiente().getDato().toString() + " }";
+        }
+        if (getAnterior() != null) {
+            text += ", anterior = " + getAnterior().getDato().toString() + " }";
+        }
+        text += " }\n";
         return text;
     }
 
