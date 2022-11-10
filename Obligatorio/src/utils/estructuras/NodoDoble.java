@@ -45,9 +45,8 @@ public class NodoDoble<T> {
     }
 
     @Override
-    public String toString() {
-
-        return "Nodo{" + "dato =" + dato.toString() + ", siguiente=" + getSiguiente() + '}';
+    public String toString() {        
+        return "Nodo{" + "dato =" + dato.toString() + "\n, siguiente=" + getSiguiente() + '}';
     }
 
   

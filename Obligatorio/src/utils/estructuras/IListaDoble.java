@@ -7,25 +7,28 @@ package utils.estructuras;
 /**
  *
  * @author alumnoFI
+ * @param <T>
  */
 public interface IListaDoble<T> {
 
     public boolean esVacia();
 
-    public void agregarInicio(NodoDoble<T> data);
+    public void agregarInicio(NodoDoble<T> nodo);
 
-    public void agregarFinal(NodoDoble<T> data);
+    public void agregarFinal(NodoDoble<T> nodo);
 
-    public void agregarOrd(NodoDoble<T> t);
+    public void agregarOrd(NodoDoble<T> nodo);
 
     public void borrarInicio();
 
     public void borrarFin();
 
-    public void borrarElemento(NodoDoble<T> data);
+    public void borrarElemento(NodoDoble<T> nodo);
 
+    // pensar como hacer cuando empieces a ver casos
+    // de los metodos que tenes que hacer
     public NodoDoble<T> buscarElemento(NodoDoble<T> data);
-
+    // same
     public NodoDoble<T> obtenerElemento(NodoDoble<T> data);
 
     public void vaciar();

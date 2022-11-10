@@ -23,15 +23,19 @@ public class Obligatorio {
         // TODO code application logic here
 
         ListaDoble<Test> listaTest = new ListaDoble<>();
-        NodoDoble<Test> prueba = new NodoDoble<>(new Test());
-        listaTest.setInicio(prueba);
+        NodoDoble<Test> prueba = new NodoDoble<>(new Test());        
         NodoDoble<Test> prueba1 = new NodoDoble<>(new Test());
-        NodoDoble<Test> prueba2 = new NodoDoble<>(new Test());
-        System.out.println(prueba.getDato().toString());
-        System.out.println(prueba1.getDato().toString());
-        System.out.println(prueba2.getDato().toString());
-        int comparacion = prueba.getDato().compareTo(prueba2.getDato());
-        System.out.println("comparacion " + comparacion);
+        
+        
+        System.out.println("es vacia?" + listaTest.esVacia());
+        listaTest.agregarInicio(prueba);
+        System.out.println("es vacia?" + listaTest.esVacia());
+        listaTest.agregarInicio(prueba1);
+        listaTest.mostrar();
+        
+        
+        
+        
     }
 
 }

@@ -46,7 +46,7 @@ public class Test implements Comparable<Test> {
 
     @Override
     public String toString() {
-        return "Test{" + "id=" + id + ", comment=" + comment + '}';
+        return "Test{" + "id=" + id + ", comment=" + comment + "}";
     }
 
     @Override

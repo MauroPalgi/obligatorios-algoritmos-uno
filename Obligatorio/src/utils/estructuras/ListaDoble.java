@@ -7,6 +7,7 @@ package utils.estructuras;
 /**
  *
  * @author x786412
+ * @param <T>
  */
 public class ListaDoble<T> implements IListaDoble {
 
@@ -31,32 +32,31 @@ public class ListaDoble<T> implements IListaDoble {
     }
 
     @Override
-    public boolean esVacia() {
+    public boolean esVacia() { // good
         return this.cantidad == 0;
     }
 
     @Override
-    public void agregarInicio(NodoDoble data) {
-        NodoDoble<T> nuevo = new NodoDoble(data); // TODO: ver si hacerlo asi
+    public void agregarInicio(NodoDoble nodo) {
         if (esVacia()) {
-            this.inicio = nuevo;
+            this.inicio = nodo;
             this.fin = inicio;
         } else {
-            nuevo.setSiguiente(this.getInicio());
-            this.inicio = nuevo;
+            nodo.setSiguiente(this.getInicio());
+            this.inicio = nodo;
         }
-
         cantidad++;
     }
 
     @Override
-    public void agregarFinal(NodoDoble data) { // TODO: VER ESTO
-        NodoDoble<T> nuevo = new NodoDoble(data);
+    public void agregarFinal(NodoDoble nodo) { // TODO: VER ESTO        
         if (this.esVacia()) {
-            agregarInicio(data);
+            agregarInicio(nodo);
+            setFin(nodo);
         } else {
-            this.getFin().setSiguiente(nuevo);
-            this.fin = nuevo;
+            this.getFin().setSiguiente(nodo);
+            nodo.setAnterior(this.getFin());
+            setFin(nodo);
             cantidad++;
         }
     }
@@ -186,12 +186,15 @@ public class ListaDoble<T> implements IListaDoble {
     public void mostrar() {
         NodoDoble<T> actual = getInicio();
         if (actual != null) {
-            System.out.println("Lista de " + actual.getDato().getClass().toString().split("[.]")[1] + "s : [");
+            System.out.println("Lista Nodos{ \n inicio: " + getInicio().getDato().toString() + ";\n fin: " + getInicio().getDato().toString() + ";\n cantidad elementos: " + this.cantidad + " \n= [");
             while (actual != null) {
-                System.out.print(actual.getDato().toString() + " - " + "\n");
+                System.out.print("  " +actual.getDato().toString());
+                if (actual.getSiguiente() != null) {
+                    System.out.println(", siguiente = {" + actual.getSiguiente().getDato().toString() + "}");
+                }
                 actual = actual.getSiguiente();
             }
-            System.out.println(" ]");
+            System.out.println("\n ]}");
         } else {
             System.out.println("La lista esta vacia");
         }
