@@ -54,22 +54,15 @@ public class ListaDoble<T> implements IListaDoble<T> {
     public void agregarFinal(T data) { // GOOD 
         NodoDoble<T> nodo = new NodoDoble<>(data);
         if (this.esVacia()) {
-            agregarInicio(data);
+            setInicio(nodo);
             setFin(nodo);
-        } else {
-            // copio valor final y borro el valor anterior
-            NodoDoble aux = this.getFin();
-            this.setFin(null);
-
-            // seteo al nuevo final el valor anterior como el anterior final
-            // que tengo en el auxiliar
-            nodo.setAnterior(aux);
-            // seteo el final el nuevo final
+        } else {            
+            NodoDoble<T> aux = this.getFin();
+            nodo.setAnterior(aux);            
+            aux.setSiguiente(nodo);            
             this.setFin(nodo);
-            // le coloco al siguiente el valor del mismo
-            aux.setSiguiente(this.getFin());
-            cantidad++;
         }
+        cantidad++;
     }
 
     @Override
@@ -116,11 +109,8 @@ public class ListaDoble<T> implements IListaDoble<T> {
     public void borrarElemento(T data) { // GOOD
         if (!this.esVacia()) {
             NodoDoble<T> actual = getInicio();
-
             while (actual != null) {
-
                 if (actual.getDato().equals(data)) {
-
                     NodoDoble<T> nodoSiguiente = actual.getSiguiente();
                     NodoDoble<T> nodoAnterior = actual.getAnterior();
                     if (nodoSiguiente != null && nodoAnterior != null) {
@@ -138,7 +128,6 @@ public class ListaDoble<T> implements IListaDoble<T> {
                 if (getFin() != null && getFin().getDato().equals(data)) {
                     borrarFin();
                 }
-
                 actual = actual.getSiguiente();
 
             }
@@ -150,54 +139,35 @@ public class ListaDoble<T> implements IListaDoble<T> {
     }
 
     @Override
-    public NodoDoble<T> buscarElemento(T data) {
-        NodoDoble<T> ret = null;
-
+    public boolean buscarElemento(T data) { // GOOD
+        boolean econtrado = false;
         if (!this.esVacia()) {
-            if (inicio.getDato().equals(data)) {
-                ret = inicio;
-            } else {
-                if (getFin().getDato().equals(data)) {
-                    ret = getFin();
-                } else {
-                    NodoDoble actual = getInicio();
-                    boolean encontre = false;
-                    while (actual != null && !encontre) {
-                        if (actual.getDato().equals(data)) {
-                            ret = actual;
-                            encontre = true;
-                        }
-                        actual = actual.getSiguiente();
-                    }
+            NodoDoble<T> actual = getInicio();
+            while (actual != null) {
+                if (actual.getDato().equals(data)) {
+                    econtrado = true;
                 }
+                actual = actual.getSiguiente();
             }
+
         }
-        return ret;
+        return econtrado;
     }
 
     @Override
-    public NodoDoble obtenerElemento(T data) {
-        NodoDoble<T> ret = null;
+    public NodoDoble obtenerElemento(T data) { // GOOD        
+        NodoDoble<T> nodo = null;
         if (!this.esVacia()) {
-            if (inicio.getDato().equals(data)) {
-                ret = inicio;
-            } else {
-                if (getFin().getDato().equals(data)) {
-                    ret = getFin();
-                } else {
-                    NodoDoble actual = getInicio();
-                    boolean encontre = false;
-                    while (actual != null && !encontre) {
-                        if (actual.getDato().equals(data)) {
-                            ret = actual;
-                            encontre = true;
-                        }
-                        actual = actual.getSiguiente();
-                    }
+            NodoDoble<T> actual = getInicio();
+            while (actual != null) {
+                if (actual.getDato().equals(data)) {
+                    nodo = actual;
                 }
+                actual = actual.getSiguiente();
             }
+
         }
-        return ret;
+        return nodo;
     }
 
     @Override
@@ -220,7 +190,6 @@ public class ListaDoble<T> implements IListaDoble<T> {
         } else {
             System.out.println("La lista esta vacia");
         }
-        System.out.println("");
     }
 
     @Override

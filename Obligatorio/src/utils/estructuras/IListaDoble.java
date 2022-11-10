@@ -27,7 +27,7 @@ public interface IListaDoble<T> {
 
     // pensar como hacer cuando empieces a ver casos
     // de los metodos que tenes que hacer
-    public NodoDoble<T> buscarElemento(T data);
+    public boolean buscarElemento(T data);
 
     // same
     public NodoDoble<T> obtenerElemento(T data);
@@ -38,6 +38,7 @@ public interface IListaDoble<T> {
 
     public void mostrarREC(NodoDoble<T> inicio); // implementar recursivo
 
-    public int cantElementos();
+    public int cantElementos();   
+    
 
 }

@@ -22,29 +22,44 @@ public class Obligatorio {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        ListaDoble<Test> listaTest = new ListaDoble<>();
+        ListaDoble<Integer> listaTest = new ListaDoble<>();
         Test inicio = new Test("inicio");
         Test medio = new Test("medio");
         Test fin = new Test("fin");
-
+        int uno = 1;
+        int dos = 2;
+        int tres = 3;
         // test 1
 //        listaTest.mostrar();
 //        listaTest.agregarFinal(inicio);        
 //        listaTest.borrarInicio();        
 //        listaTest.mostrar();
         // test 2
-        listaTest.agregarInicio(inicio);
-        listaTest.agregarInicio(inicio);
-        listaTest.agregarInicio(inicio);
-        listaTest.agregarFinal(medio);
-        listaTest.agregarFinal(fin);
+        listaTest.agregarFinal(uno);
+        listaTest.agregarFinal(dos);
+        listaTest.agregarFinal(tres);
+//        listaTest.agregarFinal(medio);
+//        listaTest.agregarFinal(fin);
         listaTest.mostrar();
-        listaTest.borrarElemento(inicio);
-        listaTest.mostrar();
-        listaTest.borrarElemento(fin);
-        listaTest.mostrar();
-        listaTest.borrarElemento(medio);
-        listaTest.mostrar();
+//        listaTest.borrarElemento(inicio);
+//        listaTest.mostrar();
+//        System.out.println("encontrado? - " + listaTest.buscarElemento(fin) );
+//        if (listaTest.buscarElemento(fin)) {            
+//            System.out.println("encontrado? - " + listaTest.obtenerElemento(fin).toString());
+//        }
+//        listaTest.borrarElemento(fin);
+//        listaTest.mostrar();
+//        System.out.println("encontrado? - " + listaTest.buscarElemento(fin) );
+//        if (listaTest.buscarElemento(fin)) {            
+//            System.out.println("encontrado? - " + listaTest.obtenerElemento(fin).toString());
+//        }        
+//        listaTest.borrarElemento(medio);
+//        listaTest.mostrar();
+//        System.out.println("encontrado? - " + listaTest.buscarElemento(fin));
+//        if (listaTest.buscarElemento(fin)) {
+//            System.out.println("encontrado? - " + listaTest.obtenerElemento(fin).toString());
+//        }
+//        
 //        listaTest.borrarElemento(medio);
 //        listaTest.mostrar();
 //        listaTest.borrarElemento(fin);
