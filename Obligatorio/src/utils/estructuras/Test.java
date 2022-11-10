@@ -20,6 +20,12 @@ public class Test implements Comparable<Test> {
         Test.idGlobal++;
     }
 
+    public Test(String comment) {
+        this.id = Test.idGlobal;
+        this.comment = comment;
+        Test.idGlobal++;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;

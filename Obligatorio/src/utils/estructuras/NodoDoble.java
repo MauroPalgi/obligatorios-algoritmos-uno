@@ -13,11 +13,23 @@ public class NodoDoble<T> {
     private T dato;
     private NodoDoble<T> siguiente;
     private NodoDoble<T> anterior;
+    static private int idGlobal = 0;
+    private int id;
 
     public NodoDoble(T t) {
         this.dato = t;
         this.siguiente = null;
         this.anterior = null;
+        this.id = idGlobal;
+        NodoDoble.idGlobal++;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public T getDato() {
@@ -45,10 +57,16 @@ public class NodoDoble<T> {
     }
 
     @Override
-    public String toString() {        
-        return "Nodo{" + "dato =" + dato.toString() + "\n, siguiente=" + getSiguiente() + '}';
+    public String toString() {
+        String text = "Nodo{ dato =" + getDato().toString();
+//        if (getSiguiente() != null) {
+//            text += ", siguiente=" + getSiguiente();
+//        }
+//        if (getAnterior() != null) {
+//            text += ", anterior=" + getAnterior();
+//        }
+        text += " }";
+        return text;
     }
-
-  
 
 }
