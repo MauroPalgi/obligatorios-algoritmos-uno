@@ -40,7 +40,8 @@ public class Obligatorio {
         listaTest.agregarFinal(tres);
 //        listaTest.agregarFinal(medio);
 //        listaTest.agregarFinal(fin);
-        listaTest.mostrar();
+//        listaTest.mostrar();
+        listaTest.mostrarREC(listaTest.getInicio());
 //        listaTest.borrarElemento(inicio);
 //        listaTest.mostrar();
 //        System.out.println("encontrado? - " + listaTest.buscarElemento(fin) );

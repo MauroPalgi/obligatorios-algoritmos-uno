@@ -56,10 +56,10 @@ public class ListaDoble<T> implements IListaDoble<T> {
         if (this.esVacia()) {
             setInicio(nodo);
             setFin(nodo);
-        } else {            
+        } else {
             NodoDoble<T> aux = this.getFin();
-            nodo.setAnterior(aux);            
-            aux.setSiguiente(nodo);            
+            nodo.setAnterior(aux);
+            aux.setSiguiente(nodo);
             this.setFin(nodo);
         }
         cantidad++;
@@ -192,9 +192,22 @@ public class ListaDoble<T> implements IListaDoble<T> {
         }
     }
 
+    // el nodo recibido tiene que ser el inicio
     @Override
-    public void mostrarREC(NodoDoble inicio) { // TODO!
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void mostrarREC(NodoDoble nodo) { // GOOD
+        if (esVacia()) { // es lo mismo que preguntar nodo == null
+            System.out.print("La Lista esta vacia");
+            return;
+        }
+        if (nodo.getSiguiente() == null) {            
+            System.out.println(nodo.toString());
+            System.out.print("inicio: " + inicio);
+            System.out.print("fin: " + fin);
+            System.out.print("cant elementos:: " + cantidad);
+            return;
+        }        
+        System.out.print(nodo.toString());
+        mostrarREC(nodo.getSiguiente());
     }
 
     @Override
