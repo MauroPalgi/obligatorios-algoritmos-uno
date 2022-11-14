@@ -4,12 +4,14 @@
  */
 package utils.estructuras;
 
+import java.util.Set;
+
 /**
  *
  * @author x786412
  * @param <T>
  */
-public class ListaDoble<T> implements IListaDoble<T> {
+public class ListaDoble<T extends Comparable<T>> implements IListaDoble<T> {
 
     private NodoDoble<T> inicio;
     private NodoDoble<T> fin;
@@ -67,7 +69,43 @@ public class ListaDoble<T> implements IListaDoble<T> {
 
     @Override
     public void agregarOrd(T data) { // TODO UTILIZAR https://www.geeksforgeeks.org/insertion-sort-doubly-linked-list/
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        NodoDoble<T> nodo = new NodoDoble<>(data);
+        if (!esVacia()) {
+            NodoDoble actual = getInicio();
+
+            if (actual.getDato().compareTo(data) > 0) {
+                agregarInicio(data);
+                return;
+            }
+            if (getFin().getDato().compareTo(data) < 0) {
+                agregarFinal(data);
+                return;
+            }
+            while (actual != null) {
+                if (actual.getDato().compareTo(nodo.getDato()) == 0) {
+                    System.out.println("Ese elemento ya se encuntra en la lista");
+                    return;
+                }
+
+                if (actual.getDato().compareTo(nodo.getDato()) < 0 && actual.getSiguiente() != null && actual.getSiguiente().getDato().compareTo(nodo.getDato()) > 0) {                    
+                    NodoDoble aux = actual.getSiguiente();
+                    actual.setSiguiente(nodo);
+                    nodo.setSiguiente(aux);
+                    nodo.setAnterior(actual);
+                    aux.setAnterior(nodo);
+                    cantidad++;
+                    return;
+
+                }
+
+                actual = actual.getSiguiente();
+
+            }
+
+        } else {
+            agregarInicio(data);
+        }
+
     }
 
     @Override
@@ -199,13 +237,13 @@ public class ListaDoble<T> implements IListaDoble<T> {
             System.out.print("La Lista esta vacia");
             return;
         }
-        if (nodo.getSiguiente() == null) {            
+        if (nodo.getSiguiente() == null) {
             System.out.println(nodo.toString());
             System.out.print("inicio: " + inicio);
             System.out.print("fin: " + fin);
             System.out.print("cant elementos:: " + cantidad);
             return;
-        }        
+        }
         System.out.print(nodo.toString());
         mostrarREC(nodo.getSiguiente());
     }

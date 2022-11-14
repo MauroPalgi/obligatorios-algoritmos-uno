@@ -22,26 +22,38 @@ public class Obligatorio {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        ListaDoble<Integer> listaTest = new ListaDoble<>();
+//        ListaDoble<Integer> listaTest = new ListaDoble<>();
+        ListaDoble<Test> listaTest = new ListaDoble<>();
         Test inicio = new Test("inicio");
         Test medio = new Test("medio");
-        Test fin = new Test("fin");
-        int uno = 1;
-        int dos = 2;
-        int tres = 3;
+        Test medio2 = new Test("medio2");
+        Test fin = new Test("fin");        
         // test 1
 //        listaTest.mostrar();
 //        listaTest.agregarFinal(inicio);        
 //        listaTest.borrarInicio();        
 //        listaTest.mostrar();
         // test 2
-        listaTest.agregarFinal(uno);
-        listaTest.agregarFinal(dos);
-        listaTest.agregarFinal(tres);
-//        listaTest.agregarFinal(medio);
-//        listaTest.agregarFinal(fin);
+//        listaTest.agregarOrd(uno);
+//        listaTest.agregarFinal(dos);
+//        listaTest.agregarOrd(tres);
+        // aca me da -1
+        listaTest.agregarOrd(medio2);
+        listaTest.agregarOrd(medio);
+        listaTest.agregarOrd(inicio);
 //        listaTest.mostrar();
-        listaTest.mostrarREC(listaTest.getInicio());
+//        listaTest.agregarOrd(medio);
+        listaTest.agregarOrd(fin);
+        listaTest.agregarOrd(medio);
+        listaTest.agregarOrd(medio);
+        listaTest.mostrar();
+        //  aca me da positivo
+//        listaTest.vaciar();
+//        listaTest.agregarFinal(fin);
+//        listaTest.agregarOrd(medio);
+        
+        
+        
 //        listaTest.borrarElemento(inicio);
 //        listaTest.mostrar();
 //        System.out.println("encontrado? - " + listaTest.buscarElemento(fin) );

@@ -9,7 +9,7 @@ package utils.estructuras;
  * @author alumnoFI
  * @param <T>
  */
-public interface IListaDoble<T> {
+public interface IListaDoble<T extends Comparable<T>> {
 
     public boolean esVacia();
 
@@ -17,7 +17,7 @@ public interface IListaDoble<T> {
 
     public void agregarFinal(T data);
 
-    public void agregarOrd(T data);
+    public void agregarOrd(T  data);
 
     public void borrarInicio();
 

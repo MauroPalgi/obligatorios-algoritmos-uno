@@ -7,8 +7,9 @@ package utils.estructuras;
 /**
  *
  * @author alumnoFI
+ * @param <T>
  */
-public class NodoDoble<T> {
+public class NodoDoble<T extends Comparable<T>> {
 
     private T dato;
     private NodoDoble<T> siguiente;

@@ -53,7 +53,9 @@ public class Test implements Comparable<Test> {
     }
 
     @Override
-    public int compareTo(Test o) {
+    public int compareTo(Test o) {        
+        // 1 - 2 =  -1 -> soy menor
+        // 1 - 0 = 1 -> soy mayor
         return this.id - o.id;
 
     }
