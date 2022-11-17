@@ -18,7 +18,47 @@ public class Cliente implements Comparable<Cliente> {
     private String rut;
     private int tel;
     private String direccion;
-    private ListaDoble<Envio> entregas = new ListaDoble<Envio>();
+    private ListaDoble<Entrega> entregas = new ListaDoble<Entrega>();
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getRut() {
+        return rut;
+    }
+
+    public void setRut(String rut) {
+        this.rut = rut;
+    }
+
+    public int getTel() {
+        return tel;
+    }
+
+    public void setTel(int tel) {
+        this.tel = tel;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public ListaDoble<Entrega> getEntregas() {
+        return entregas;
+    }
+
+    public void setEntregas(ListaDoble<Entrega> entregas) {
+        this.entregas = entregas;
+    }
 
     public Cliente(String nombre, String rut, int tel, String direccion) {
         this.nombre = nombre;
@@ -28,7 +68,7 @@ public class Cliente implements Comparable<Cliente> {
     }
 
     public Cliente(String rut) {
-        this.rut = rut;        
+        this.rut = rut;
     }
 
     @Override
@@ -64,7 +104,10 @@ public class Cliente implements Comparable<Cliente> {
 
     @Override
     public String toString() {
-        return "Cliente{" + "nombre=" + nombre + ", rut=" + rut + ", tel=" + tel + ", direccion=" + direccion + '}';
+        String text = "Cliente{" + "nombre=" + nombre + ", rut=" + rut + ", tel=" + tel + ", direccion=" + direccion;
+        text += ", entregas realizadas vacias?" + entregas.esVacia();
+        text += '}';
+        return text;
     }
 
 }

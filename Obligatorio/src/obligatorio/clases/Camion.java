@@ -6,6 +6,7 @@
 package obligatorio.clases;
 
 import java.util.Objects;
+import utils.estructuras.ListaDoble;
 
 /**
  *
@@ -15,6 +16,32 @@ public class Camion implements Comparable<Camion> {
 
     private String matricula;
     private int toneladaMaxSoportada;
+    private ListaDoble<Entrega> entregasRealizadas = new ListaDoble<>();
+    private ListaDoble<Entrega> entregasPendientes = new ListaDoble<>();
+
+    public int getToneladaMaxSoportada() {
+        return toneladaMaxSoportada;
+    }
+
+    public void setToneladaMaxSoportada(int toneladaMaxSoportada) {
+        this.toneladaMaxSoportada = toneladaMaxSoportada;
+    }
+
+    public ListaDoble<Entrega> getEntregasRealizadas() {
+        return entregasRealizadas;
+    }
+
+    public void setEntregasRealizadas(ListaDoble<Entrega> entregasRealizadas) {
+        this.entregasRealizadas = entregasRealizadas;
+    }
+
+    public ListaDoble<Entrega> getEntregasPendientes() {
+        return entregasPendientes;
+    }
+
+    public void setEntregasPendientes(ListaDoble<Entrega> entregasPendientes) {
+        this.entregasPendientes = entregasPendientes;
+    }
 
     public Camion(String matricula, int toneladaMaxSoportada) {
         this.matricula = matricula;
@@ -53,7 +80,11 @@ public class Camion implements Comparable<Camion> {
 
     @Override
     public String toString() {
-        return "Camion{" + "matricula=" + matricula + ", toneladaMaxSoportada=" + toneladaMaxSoportada + '}';
+        String text = "Camion{" + "matricula=" + matricula + ", toneladaMaxSoportada=" + toneladaMaxSoportada;
+        text += "entregas realizadas es vacia ?" + entregasRealizadas.esVacia();
+        text += "entregas pendientes es vacia ?" + entregasPendientes.esVacia();
+        text += '}';
+        return text;
     }
 
     @Override

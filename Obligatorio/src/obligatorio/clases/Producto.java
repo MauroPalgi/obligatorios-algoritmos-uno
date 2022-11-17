@@ -92,9 +92,7 @@ public class Producto implements Comparable<Producto> {
     @Override
     public String toString() {
         String text = "Producto{" + "nombre=" + nombre + ", descripcion=" + descripcion + ", idProducto=" + idProducto + ", stockEnFabrica=" + stockEnFabrica;
-        if (!listaCaja.esVacia()) {
-            text += ", listaCaja es vacia?=" + listaCaja.esVacia()+'}';
-        }
+        text += ", listaCaja es vacia?=" + listaCaja.esVacia() + '}';
         return text;
     }
 

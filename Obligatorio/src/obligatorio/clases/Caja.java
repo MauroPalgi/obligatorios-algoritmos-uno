@@ -82,9 +82,9 @@ public class Caja implements Comparable<Caja> {
             return false;
         }
         final Caja other = (Caja) obj;
-        if (this.numeroCaja != 0 && this.camion != null && this.producto != null) {
-            System.out.println("aca");
-        }
+//        if (this.numeroCaja != 0 && this.camion != null && this.producto != null) {
+//            System.out.println("aca");
+//        }
 
         if (this.numeroCaja != other.numeroCaja) {
             return false;

@@ -20,6 +20,24 @@ public class Fabrica {
     private ListaDoble<Producto> listaProductos = new ListaDoble<>();
     private ListaDoble<Caja> listaCaja = new ListaDoble<>();
 
+    public ListaDoble<Entrega> getListaEntregasPendientes() {
+        return listaEntregasPendientes;
+    }
+
+    public void setListaEntregasPendientes(ListaDoble<Entrega> listaEntregasPendientes) {
+        this.listaEntregasPendientes = listaEntregasPendientes;
+    }
+
+    public ListaDoble<Entrega> getListaEntregasRealizadas() {
+        return listaEntregasRealizadas;
+    }
+
+    public void setListaEntregasRealizadas(ListaDoble<Entrega> listaEntregasRealizadas) {
+        this.listaEntregasRealizadas = listaEntregasRealizadas;
+    }
+    private ListaDoble<Entrega> listaEntregasPendientes = new ListaDoble<>();
+    private ListaDoble<Entrega> listaEntregasRealizadas = new ListaDoble<>();
+
     public void setCapacidadCajas(int capacidadCajas) {
         this.capacidadCajas = capacidadCajas;
     }

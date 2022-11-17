@@ -29,6 +29,7 @@ public class Obligatorio {
         juegosTest.pruebasRegistroProducto(obligatorio, prueba);
         juegosTest.pruebasAltaSotck(obligatorio, prueba);
         juegosTest.pruebasRetiroDeProducto(obligatorio, prueba);
+        juegosTest.pruebasDeBaja(obligatorio, prueba);
 
     }
 
