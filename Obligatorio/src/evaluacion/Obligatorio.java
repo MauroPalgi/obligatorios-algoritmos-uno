@@ -397,8 +397,13 @@ public class Obligatorio implements IObligatorio {
 
     @Override
     public Retorno listarEnvíosDeProducto(int codProd) {
-        // ERROR NO EXISTE EL PRODUCTO
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Retorno ret = new Retorno(Retorno.Resultado.ERROR_1);
+        if (this.fabrica != null) {
+            this.fabrica.getListaEntregasRealizadas().mostrar();
+            ret.resultado = Retorno.Resultado.OK;
+            return ret;
+        }
+        return ret;
     }
 
     //  Lista las órdenes pendientes de un producto dado, ordenadas por orden de prioridad 
@@ -407,7 +412,6 @@ public class Obligatorio implements IObligatorio {
         Retorno ret = new Retorno(Retorno.Resultado.ERROR_1);
         ListaDoble<Entrega> listaPendienteDeProducto = new ListaDoble<>();
         boolean hayPendientes = false;
-
         // buscar producto
         NodoDoble<Producto> actualProducto = this.fabrica.getListaProductos().getInicio();
         NodoDoble<Producto> productoCaja = null;
