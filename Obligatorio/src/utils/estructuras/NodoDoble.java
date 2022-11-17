@@ -15,22 +15,22 @@ public class NodoDoble<T extends Comparable<T>> {
     private NodoDoble<T> siguiente;
     private NodoDoble<T> anterior;
     static private int idGlobal = 0;
-    private int id;
+    private int idNodoDoble;
 
     public NodoDoble(T t) {
         this.dato = t;
         this.siguiente = null;
         this.anterior = null;
-        this.id = idGlobal;
+        this.idNodoDoble = idGlobal;
         NodoDoble.idGlobal++;
     }
 
     public int getId() {
-        return id;
+        return idNodoDoble;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.idNodoDoble = id;
     }
 
     public T getDato() {

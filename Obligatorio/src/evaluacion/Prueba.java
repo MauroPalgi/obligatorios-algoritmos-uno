@@ -76,7 +76,7 @@ public class Prueba {
 		}
 	}
 
-	void imprimirResultadosPrueba()
+	public void imprimirResultadosPrueba()
 	{
 		System.out.println();
 		System.out.println( "  +------------------------------+");

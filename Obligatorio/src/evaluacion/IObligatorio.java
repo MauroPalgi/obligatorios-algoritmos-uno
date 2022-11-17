@@ -4,7 +4,7 @@ package evaluacion;
 public interface IObligatorio {
     
     //pre:      post:
-    public Retorno crearSistemaDeDistribucion();
+    public Retorno crearSistemaDeDistribucion(int capacidadCajas);
      //pre:      post:
     public Retorno agregarCliente(String nombre,String rut,int tel, String direccion);
      //pre:      post:
@@ -18,7 +18,7 @@ public interface IObligatorio {
      //pre:      post:
     public Retorno altaDeStockDeProducto(String matriculaCamion, int codigoProd, int nroCaja, int cantUnidades);
      //pre:      post:
-    public Retorno retiroDeProducto(int matriculaCam, int rutCliente, int codProducto, int cant); 
+    public Retorno retiroDeProducto(String matriculaCam, String rutCliente, int codProducto, int cant); 
      //pre:      post:
     public Retorno listarCamiones();
      //pre:      post:
