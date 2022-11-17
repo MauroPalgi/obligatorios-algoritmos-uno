@@ -21,6 +21,10 @@ public class Camion implements Comparable<Camion> {
         this.toneladaMaxSoportada = toneladaMaxSoportada;
     }
 
+    public Camion(String matricula) {
+        this.matricula = matricula;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;

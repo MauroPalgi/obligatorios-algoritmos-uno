@@ -14,7 +14,7 @@ import utils.estructuras.*;
  */
 public class Cliente implements Comparable<Cliente> {
 
-    private String nombre;
+    private String nombre = "";
     private String rut;
     private int tel;
     private String direccion;
@@ -25,6 +25,10 @@ public class Cliente implements Comparable<Cliente> {
         this.rut = rut;
         this.tel = tel;
         this.direccion = direccion;
+    }
+
+    public Cliente(String rut) {
+        this.rut = rut;        
     }
 
     @Override

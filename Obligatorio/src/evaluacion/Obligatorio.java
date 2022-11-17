@@ -7,6 +7,7 @@ package evaluacion;
 
 import obligatorio.clases.*;
 import utils.estructuras.*;
+import java.lang.Math;
 
 /**
  *
@@ -15,6 +16,10 @@ import utils.estructuras.*;
 public class Obligatorio implements IObligatorio {
 
     private Fabrica fabrica;
+
+    public Fabrica getFabrica() {
+        return fabrica;
+    }
 
     @Override
     public Retorno crearSistemaDeDistribucion(int capacidadCajas) {
@@ -85,28 +90,31 @@ public class Obligatorio implements IObligatorio {
     @Override
     public Retorno registrarProducto(String nombre, String descripcion) {
         Retorno ret = new Retorno(Retorno.Resultado.ERROR_1);
-        if ("".equals(descripcion)) {
-            ret.resultado = Retorno.Resultado.ERROR_3;
-            return ret;
-        }
+
         if (this.fabrica != null) {
-            Producto nuevoProducto = new Producto(nombre);
+            Producto nuevoProducto = new Producto(nombre, descripcion);
+            if ("".equals(descripcion) || descripcion == null) {
+                ret.resultado = Retorno.Resultado.ERROR_3;
+                Producto.idGlobal--;
+                return ret;
+            }
             NodoDoble<Producto> NodoExistenteProducto = this.fabrica.getListaProductos().obtenerElemento(nuevoProducto);
             if (NodoExistenteProducto != null && NodoExistenteProducto.getDato() != null) {
                 ret.resultado = Retorno.Resultado.ERROR_1;
+                Producto.idGlobal--;
                 return ret;
             }
 
             NodoDoble<Producto> actualProducto = this.fabrica.getListaProductos().getInicio();
             while (actualProducto != null) {
-                if (actualProducto.getDato().getNombre().compareTo(nombre) == 0) {
+                if (NodoExistenteProducto != null && actualProducto.getDato().getIdProducto() == NodoExistenteProducto.getDato().getIdProducto()) {
                     ret.resultado = Retorno.Resultado.ERROR_2;
                     return ret;
                 }
 
                 actualProducto = actualProducto.getSiguiente();
             }
-            this.fabrica.getListaProductos().agregarOrd(nuevoProducto);
+            this.fabrica.getListaProductos().agregarFinal(nuevoProducto);
             ret.resultado = Retorno.Resultado.OK;
         }
         return ret;
@@ -116,7 +124,69 @@ public class Obligatorio implements IObligatorio {
     public Retorno altaDeStockDeProducto(String matriculaCamion, int codigoProd, int nroCaja, int cantUnidades) {
         // ERROR NO EXISTE CAMION, NO EXISTE PRODUCTO, CANT UNIDADES <=0, YA EXISTE CAJA (ESTE METODO CREA UNA CAJA ENTIENDO), 
         // ERROR CAPACIDAD DE FABRICA PARA DESPACHAR EXEDIDA
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Retorno ret = new Retorno(Retorno.Resultado.ERROR_1);
+        // busca camion
+        Camion camionBuscado = new Camion(matriculaCamion);
+        NodoDoble<Camion> camionCaja = this.fabrica.getListaCamiones().obtenerElemento(camionBuscado);
+
+        // buscar producto
+        NodoDoble<Producto> actualProducto = this.fabrica.getListaProductos().getInicio();
+        NodoDoble<Producto> productoCaja = null;
+        while (actualProducto != null) {
+            if (actualProducto.getDato().getIdProducto() == codigoProd) {
+                productoCaja = actualProducto;
+                actualProducto = null;
+                break;
+            } else {
+                actualProducto = actualProducto.getSiguiente();
+            }
+
+        }
+        // buscar numero de caja
+        Caja cajaBuscada = new Caja(nroCaja);
+        boolean existeCaja = this.fabrica.getListaCaja().buscarElemento(cajaBuscada);
+
+        boolean existeCamion = camionCaja != null;
+        boolean existeProducto = productoCaja != null;
+        boolean sonCantUnidadesPositivas = cantUnidades > 0;
+        boolean quedaCapacidad = this.fabrica.getCapacidadCajas() - cantUnidades >= 0;
+
+        if (!existeCamion) {
+            return ret;
+        }
+        if (!existeProducto) {
+            ret.resultado = Retorno.Resultado.ERROR_2;
+            return ret;
+        }
+        if (!sonCantUnidadesPositivas) {
+            ret.resultado = Retorno.Resultado.ERROR_3;
+            return ret;
+        }
+        if (existeCaja) {
+            ret.resultado = Retorno.Resultado.ERROR_4;
+            return ret;
+        }
+        if (!quedaCapacidad) {
+            ret.resultado = Retorno.Resultado.ERROR_5;
+            return ret;
+        }
+        boolean sePuedeAlta = existeCamion && existeCamion && existeProducto && sonCantUnidadesPositivas && !existeCaja && quedaCapacidad;
+
+        if (sePuedeAlta) {
+            // ser caja en producto
+            cajaBuscada = new Caja(nroCaja, camionCaja.getDato(), productoCaja.getDato(), cantUnidades);
+            productoCaja.getDato().getListaCaja().agregarOrd(cajaBuscada);
+            int nuevoStockProducto = productoCaja.getDato().getStockEnFabrica() + cantUnidades;
+            productoCaja.getDato().setStockEnFabrica(nuevoStockProducto);
+            // set caja en fabrica            
+            // cajaBuscada.
+            this.fabrica.getListaCaja().agregarOrd(cajaBuscada);
+            int nuevaCapacidadCajas = this.fabrica.getCapacidadCajas() - 1;
+            this.fabrica.setCapacidadCajas(nuevaCapacidadCajas);
+            ret.resultado = Retorno.Resultado.OK;
+        }
+
+        return ret;
     }
 
     /*
@@ -135,14 +205,100 @@ public class Obligatorio implements IObligatorio {
      */
     @Override
     public Retorno retiroDeProducto(String matriculaCam, String rutCliente, int codProducto, int cant) {
-        // ERROR NO EXISTE CAMION, NO EXISTE CLIENTE, NO EXISTRE PRODUCTO
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Retorno ret = new Retorno(Retorno.Resultado.ERROR_1);
+        // busca camion
+        Camion camionBuscado = new Camion(matriculaCam);
+        NodoDoble<Camion> camionCaja = this.fabrica.getListaCamiones().obtenerElemento(camionBuscado);
+        boolean existeCamion = camionCaja != null;
+
+        // buscar producto
+        NodoDoble<Producto> actualProducto = this.fabrica.getListaProductos().getInicio();
+        NodoDoble<Producto> productoCaja = null;
+        while (actualProducto != null) {
+            if (actualProducto.getDato().getIdProducto() == codProducto) {
+                productoCaja = actualProducto;
+                actualProducto = null;
+                break;
+            } else {
+                actualProducto = actualProducto.getSiguiente();
+            }
+
+        }
+
+        // buscar cliente
+        Cliente clienteBuscar = new Cliente(rutCliente);
+        NodoDoble<Cliente> clienteCaja = this.fabrica.getListaClientes().obtenerElemento(clienteBuscar);
+        if (productoCaja != null && camionCaja != null && clienteCaja != null) {
+
+            if (!productoCaja.getDato().getListaCaja().esVacia()) {
+                // no tiene estock porque no esta en ninguna caja                
+                NodoDoble<Caja> actualCaja = productoCaja.getDato().getListaCaja().getFin();
+                System.out.println(productoCaja.getDato().getStockEnFabrica());
+                int sobranteCaja = cant;
+                int pendiente = 0;
+                while (actualCaja != null && sobranteCaja > 0) {
+
+                    sobranteCaja -= actualCaja.getDato().getUnidadesProducto();
+                    if (sobranteCaja > 0 || sobranteCaja == 0) {
+                        productoCaja.getDato().getListaCaja().borrarElemento(actualCaja.getDato());
+
+                    } else {
+                        if (sobranteCaja > 0) {
+                            pendiente = Math.abs(sobranteCaja);
+                        }
+
+                    }
+
+                    actualCaja = actualCaja.getAnterior();
+                }
+                System.out.println("sobrante" + sobranteCaja);
+                System.out.println("pendiente" + pendiente);
+            }
+
+        }
+
+//        // buscar numero de caja
+//        Caja cajaBuscada = new Caja(nroCaja);
+//        boolean existeCaja = this.fabrica.getListaCaja().buscarElemento(cajaBuscada);
+//
+//        boolean existeProducto = productoCaja != null;
+//        boolean sonCantUnidadesPositivas = cantUnidades > 0;
+//        boolean quedaCapacidad = this.fabrica.getCapacidadCajas() - cantUnidades >= 0;
+//        if (!existeCamion) {
+//            return ret;
+//        }
+//        if (!existeProducto) {
+//            ret.resultado = Retorno.Resultado.ERROR_2;
+//            return ret;
+//        }
+//        if (!sonCantUnidadesPositivas) {
+//            ret.resultado = Retorno.Resultado.ERROR_3;
+//            return ret;
+//        }
+//        if (existeCaja) {
+//            ret.resultado = Retorno.Resultado.ERROR_4;
+//            return ret;
+//        }
+//        if (!quedaCapacidad) {
+//            ret.resultado = Retorno.Resultado.ERROR_5;
+//            return ret;
+//        }
+//        boolean sePuedeAlta = existeCamion && existeCamion && existeProducto && sonCantUnidadesPositivas && !existeCaja && quedaCapacidad;
+//
+//        if (sePuedeAlta) {
+//            cajaBuscada = new Caja(nroCaja, camionBuscado, productoCaja.getDato(), codigoProd);
+//            this.fabrica.getListaCaja().agregarOrd(cajaBuscada);
+//            int nuevaCapacidadCajas = this.fabrica.getCapacidadCajas() - 1;
+//            this.fabrica.setCapacidadCajas(nuevaCapacidadCajas);
+//            ret.resultado = Retorno.Resultado.OK;
+//        }
+//
+        return ret;
     }
 
     @Override
     public Retorno listarCamiones() {
         Retorno ret = new Retorno(Retorno.Resultado.ERROR_1);
-
         if (this.fabrica != null) {
             this.fabrica.getListaCamiones().mostrar();
             ret.resultado = Retorno.Resultado.OK;

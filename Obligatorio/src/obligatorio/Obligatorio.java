@@ -20,12 +20,15 @@ public class Obligatorio {
     public static void main(String[] args) {
 
         evaluacion.Obligatorio obligatorio = new evaluacion.Obligatorio();
+        // String attr = "get"        
         Prueba prueba = new Prueba();
-
+        prueba.setShowOnlyErrorLogs(true);
         juegosTest.pruebasCreacionSistema_1(obligatorio, prueba);
         juegosTest.pruebasRegistroClientes(obligatorio, prueba);
         juegosTest.pruebasRegistroCamion(obligatorio, prueba);
         juegosTest.pruebasRegistroProducto(obligatorio, prueba);
+        juegosTest.pruebasAltaSotck(obligatorio, prueba);
+        juegosTest.pruebasRetiroDeProducto(obligatorio, prueba);
 
     }
 

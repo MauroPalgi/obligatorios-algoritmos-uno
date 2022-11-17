@@ -87,7 +87,7 @@ public class ListaDoble<T extends Comparable<T>> implements IListaDoble<T> {
                     return;
                 }
 
-                if (actual.getDato().compareTo(nodo.getDato()) < 0 && actual.getSiguiente() != null && actual.getSiguiente().getDato().compareTo(nodo.getDato()) > 0) {                    
+                if (actual.getDato().compareTo(nodo.getDato()) < 0 && actual.getSiguiente() != null && actual.getSiguiente().getDato().compareTo(nodo.getDato()) > 0) {
                     NodoDoble aux = actual.getSiguiente();
                     actual.setSiguiente(nodo);
                     nodo.setSiguiente(aux);
@@ -174,6 +174,23 @@ public class ListaDoble<T extends Comparable<T>> implements IListaDoble<T> {
             System.out.println("La Lista esta Vacia");
         }
 
+    }
+
+    @Override
+    public String toString() {
+        String text = "";
+        NodoDoble<T> actual = getInicio();
+        if (actual != null) {
+            text += "Lista Nodos{ \n inicio: " + getInicio().getDato().toString() + ";\n fin: " + getFin().getDato().toString() + ";\n cantidad elementos: " + this.cantidad + " \n= [";
+            while (actual != null) {
+                text += actual.toString() + "  ";
+                actual = actual.getSiguiente();
+            }
+            text += "\n ]}";
+        } else {
+            text = "La lista esta vacia";
+        }
+        return text;
     }
 
     @Override

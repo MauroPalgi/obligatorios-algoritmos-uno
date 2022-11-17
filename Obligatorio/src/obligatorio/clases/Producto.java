@@ -6,6 +6,7 @@
 package obligatorio.clases;
 
 import java.util.Objects;
+import utils.estructuras.ListaDoble;
 
 /**
  *
@@ -16,7 +17,25 @@ public class Producto implements Comparable<Producto> {
     private String nombre;
     private String descripcion;
     private int idProducto;
-    static private int idGlobal = 0;
+    static public int idGlobal = 0;
+    private int stockEnFabrica = 0;
+    private ListaDoble<Caja> listaCaja = new ListaDoble<>();
+
+    public int getStockEnFabrica() {
+        return stockEnFabrica;
+    }
+
+    public void setStockEnFabrica(int stockEnFabrica) {
+        this.stockEnFabrica = stockEnFabrica;
+    }
+
+    public ListaDoble<Caja> getListaCaja() {
+        return listaCaja;
+    }
+
+    public void setListaCaja(ListaDoble<Caja> listaCaja) {
+        this.listaCaja = listaCaja;
+    }
 
     public Producto(String nombre, String descripcion) {
         this.nombre = nombre;
@@ -24,10 +43,15 @@ public class Producto implements Comparable<Producto> {
         this.idProducto = Producto.idGlobal;
         Producto.idGlobal++;
     }
-    // para poder buscarlo
 
-    public Producto(String nombre) {
-        this.nombre = nombre;
+    // para poder buscarlo
+//    public Producto(String nombre) {
+//        this.nombre = nombre;
+//        this.idProducto = Producto.idGlobal;
+//        Producto.idGlobal++;
+//    }
+    public Producto(int id) {
+        this.idProducto = id;
     }
 
     @Override
@@ -67,7 +91,11 @@ public class Producto implements Comparable<Producto> {
 
     @Override
     public String toString() {
-        return "Producto{" + "nombre=" + nombre + ", descripcion=" + descripcion + ", idProducto=" + idProducto + '}';
+        String text = "Producto{" + "nombre=" + nombre + ", descripcion=" + descripcion + ", idProducto=" + idProducto + ", stockEnFabrica=" + stockEnFabrica;
+        if (!listaCaja.esVacia()) {
+            text += ", listaCaja es vacia?=" + listaCaja.esVacia()+'}';
+        }
+        return text;
     }
 
     public int getIdProducto() {

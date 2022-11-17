@@ -31,6 +31,8 @@ public interface IListaDoble<T extends Comparable<T>> {
 
     // same
     public NodoDoble<T> obtenerElemento(T data);
+    
+    
 
     public void vaciar();
 
